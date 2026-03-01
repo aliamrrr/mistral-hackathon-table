@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+pyjwt
+passlib
+bcrypt
+mistralai
+elevenlabs
+moviepy
+python-dotenv
+python-multipart

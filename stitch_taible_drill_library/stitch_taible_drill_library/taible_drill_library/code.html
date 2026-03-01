@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Taible Drill Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2bcdee",
+                        "primary-content": "#101f22",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                        "surface-dark": "#162629",
+                        "surface-light": "#ffffff",
+                        "text-main": "#e0e7e9",
+                        "text-muted": "#9db4b9",
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                        body: ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body antialiased text-slate-900 dark:text-text-main overflow-hidden h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 flex flex-col justify-between bg-surface-dark border-r border-slate-800 h-full">
+<div class="flex flex-col gap-4 p-4">
+<!-- App Header -->
+<div class="flex gap-3 items-center mb-6">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="Football tactical board abstract" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQrR_KvrmfGNgZ1E5TQIfFpDsiz66LJkOqNwMdSdPq7ArINXQdyyLebhNJlGqV0tu57YhKFngEVCvEb7818xJxtqliS_vrho8WQdV5t7_qV2ex5yxImapuBKb8YVfZ2fGT6TS3bPnACOf0QEYfbRopacQ2ZNwrdzgBjCta_ffxmf2DmHM_uePgCJ8j0q2fUM3k_nP44DjYHGsAOnxuf70-6f5XGDLNtRLR8eaYgUsMGe2UzHXdWt7LxNEGiTkjsZHD8rSsauw7WBA");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-lg font-display font-bold leading-tight">Taible</h1>
+<p class="text-text-muted text-xs font-normal">Premium Tactics</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:bg-slate-800 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">book_2</span>
+<p class="text-sm font-medium">Drills</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:bg-slate-800 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors">emoji_events</span>
+<p class="text-sm font-medium">Matches</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:bg-slate-800 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors">group</span>
+<p class="text-sm font-medium">Players</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:bg-slate-800 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</nav>
+</div>
+<!-- Sidebar Footer Action -->
+<div class="p-4 border-t border-slate-800">
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg h-11 px-4 bg-primary hover:bg-primary/90 text-primary-content text-sm font-bold tracking-wide transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>New Drill</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background-dark relative">
+<!-- Top Bar / Header Region -->
+<header class="flex flex-col gap-6 px-8 py-8 z-10">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-white font-display text-4xl font-bold tracking-tight">Drill Library</h1>
+<p class="text-text-muted mt-2 text-sm">Manage and organize your tactical exercises and set pieces.</p>
+</div>
+<div class="flex gap-3">
+<!-- Sort Button (Mock) -->
+<button class="p-2 text-text-muted hover:text-white hover:bg-surface-dark rounded-lg transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-2 text-text-muted hover:text-white hover:bg-surface-dark rounded-lg transition-colors">
+<span class="material-symbols-outlined">list</span>
+</button>
+</div>
+</div>
+<!-- Search and Filter Bar -->
+<div class="flex flex-col lg:flex-row gap-4 w-full">
+<!-- Search Input -->
+<div class="relative flex-1 group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-muted group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-3 bg-surface-dark border border-slate-700/50 rounded-lg text-sm placeholder-text-muted text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm" placeholder="Search tactics, formations, or drills..." type="text"/>
+</div>
+<!-- Filters -->
+<div class="flex gap-3 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
+<button class="flex items-center gap-2 h-11 px-4 rounded-lg bg-surface-dark border border-slate-700/50 text-white hover:border-primary/50 transition-all whitespace-nowrap">
+<span class="text-sm font-medium">All Drills</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-2 h-11 px-4 rounded-lg bg-surface-dark border border-slate-700/50 text-text-muted hover:text-white hover:border-slate-600 transition-all whitespace-nowrap">
+<span class="text-sm font-medium">Formation</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-2 h-11 px-4 rounded-lg bg-surface-dark border border-slate-700/50 text-text-muted hover:text-white hover:border-slate-600 transition-all whitespace-nowrap">
+<span class="text-sm font-medium">Phase of Play</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-2 h-11 px-4 rounded-lg bg-surface-dark border border-slate-700/50 text-text-muted hover:text-white hover:border-slate-600 transition-all whitespace-nowrap">
+<span class="text-sm font-medium">Date</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Grid Content -->
+<div class="flex-1 overflow-y-auto px-8 pb-8 custom-scrollbar">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="group bg-surface-dark rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer flex flex-col">
+<div class="relative aspect-[16/9] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Football pitch with tactical markers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDy3xr5iHlc7mX9zy6EevmkGIdRfEIWnPHYhKh5Uhio-9gF1CPgp4T-AnJZqCHWnFH0GHEmbU-i5wqx2ksW9IKrl5WDbnF6Z86Lep0Dxsty25CxbdBxR7s1YIegVOKFVB0h-XeZdOAVSjIKUMZHRp48RypJfO2x7wmlyeoS6N0j6DKni5tcMO5_seMKfVzjsrM7Q138aPSyUdU-ecVrLP8SHP6bBaU5fMb0XN6eodSBLN-7cK1mBSYBfU2TnxxmaW1TdeEOOOEzFwA");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark/90 to-transparent opacity-60"></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-mono text-primary border border-primary/20">
+                            4-3-3
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-display font-medium leading-tight group-hover:text-primary transition-colors">4-3-3 Mid-Block</h3>
+<button class="text-text-muted hover:text-white"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Defensive</span>
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Midfield</span>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-800/50">
+<span class="text-text-muted text-xs">Updated 2h ago</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-slate-600 border border-surface-dark bg-cover" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAFlerGRAXRrAgrqDehPZKhBiLVfHdN47AyQCjwhBp4-C2MtVfTu3ARrJz7xZMtAXJ8bggyo0HJ0PNV_FACfpX2tWvsBBA83QGlLteesn1Ls5ib2tU61U5I7Nfjc-S0weCry26G5YfYdlEuseJWmbD-YsRESSXoSvrXWg3ELLRfYABzhO3iRTXi0m_f73-sws32xbwBv2tahEAy3tU4ArKS9Gp3jD_jIAISJn4BnevX61bsbBoHA_ncUyhc8aBTXbgEjoeuQhiJBvk");'></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-surface-dark rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer flex flex-col">
+<div class="relative aspect-[16/9] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Close up of football field corner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9fazsLfHnevPJXBofy_nxx0IW8Ca-SZ4rMbMqxUxs3o1nW5iRCva59m_fY8L-MDQFIjpGnOCWxkyXISEUNNXi9HY1O4q2zyBqQk85sGCutZMucVLnT9HjLoTYaRAz-7U9YRn1iAmzcr2hSmG2kSiVm94yGc3KxeOEmgiQv_zJbeVVl6RASGswqY1TnmizrMqGWd4FnSiI8a5fNLOxgWB7xPCesTsQPct8u2mBuyE65uc6zad4D91Xw3Wc2mW0E8IUuBfY7I9yq30");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark/90 to-transparent opacity-60"></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-mono text-primary border border-primary/20">
+                            Set Piece
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-display font-medium leading-tight group-hover:text-primary transition-colors">Corner Routine A</h3>
+<button class="text-text-muted hover:text-white"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Attacking</span>
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Dead Ball</span>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-800/50">
+<span class="text-text-muted text-xs">Oct 22, 2023</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-slate-600 border border-surface-dark bg-cover" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGEE9zWKgSdKg6quW09uLjSZDlOmBLK59eLKcTb8N_kZqACazRQlkHAikDxcPggq1Za55h3-xvHZ5ESS1FZXigZ5M7QgSBC9GWKnNYZ9X9Ij_T_B4XqLUD35UwiPb5JjJFxa5Qr_XUXB-uXicyvEciO9ZzqILlwQaDJ5PNSMtsNZiyi6jrEYKGz4RL7SkRkXz1LRL7gHkCj722LpwXM7ZMpeJttbXY4ewXvcDgpCYNEM3PVd1rqhq8fzP0J5B5vnozT3oGo0K3ooY");'></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-surface-dark rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer flex flex-col">
+<div class="relative aspect-[16/9] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Tactical overview of soccer field at night" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCz7fVJA8jmVZ3aEwHV08n-Fpe6d-OZb6r1p84Fvuimpz6fBLlvaxCtoXamP1VEqn2qBGGuHRcs0AOy3mX0Lk9Yv_KKspWdJnWJc7e1VFDyJO7eUM5SLotYKe_lWdWFVNiutT-Gc6sXvPT4R5qnL8pZA0BG724S3CP6IqDNm8IaxxwiLTCvc4g5NQwsiKKSz4szSNHWHirX2WD9jD0oL1hBoKiRSX5Wfv4wp1q2-nidg0n4wuhVMH93QsAvKLpPoDWXnEprvYnWgyw");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark/90 to-transparent opacity-60"></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-mono text-primary border border-primary/20">
+                            Pressing
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-display font-medium leading-tight group-hover:text-primary transition-colors">High Press Trap</h3>
+<button class="text-text-muted hover:text-white"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Aggressive</span>
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Tactical</span>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-800/50">
+<span class="text-text-muted text-xs">Oct 20, 2023</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-slate-600 border border-surface-dark bg-cover" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyR1Yf6phtk2XaHuz_umG6YtAHuifQUFFR4eG46fAHgBg3kwiUzAShd83oqn-z6jFjBdI9STRlXp5NvWAZlWz9VhPWGL_SZSbP5XAFvFq4srMwo6cva9Jdk0rKyAoI7-JmvnaiTJaFxqE0HldHrV--paS-kj925EpIbEqojGGdxSCHJ57cr3ebPwjR5nM6fVi_M7RkwtF9GUoEQO_uqby9NbCQFpeMdGmqnd4vtwi_TUtfUtiMpXRKTraXb_o-r_m8n4RukCOd3X8");'></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group bg-surface-dark rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer flex flex-col">
+<div class="relative aspect-[16/9] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Coach explaining tactics on board" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxUmMF8_RdWqiPsbSPH3FKfpBnvs0Kfuk2s1Qe4ez_xKo9iZznA2-DDfNA7m3fOcJPSY2tZBLzEg86p0eTbKKYe_dHOhk8wv-z5KqpTUr9lk02hayhWyJI0iw44bjzPtb8egHGDtFvB6hzC04XjPqrYHZtdjZ7Q65GehMzKZunQ06F6l5t981806kp4hIyUervg0rpe0Qld4AjaRr6gdcAcbZufe5trM-PiCl9KA2jSttpSiKaoWSMg5Bai_xobvVFCVO_8MaHPyk");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark/90 to-transparent opacity-60"></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-mono text-primary border border-primary/20">
+                            Build Up
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-display font-medium leading-tight group-hover:text-primary transition-colors">Build Up vs 4-4-2</h3>
+<button class="text-text-muted hover:text-white"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Attacking</span>
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Phase 1</span>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-800/50">
+<span class="text-text-muted text-xs">Oct 18, 2023</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-slate-600 border border-surface-dark bg-cover" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBhLzq07dDnkgl-LJ9t4UXGB4L-zaAWcEVbLdco0EkFhTZRjcG7sIYAsXrQkdJD8i8_goYtbTgcq89PtwKBqYUZYmoBNZRY01Dapm48NQCgwcGoPpBV_kShc9GJUGjo5c4nbY2vrg9VGjeBa21alNamGPWBWFrqqMazH375EPWKOmiQ53HxFU3lCvmKemWUn_sHdhJ00sayPHu4uHA72T2zwO67TX1cUslxgqgGwJ54swhcb4y3101O262TfwGs7D1rNbzBWjfwEH0");'></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group bg-surface-dark rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer flex flex-col">
+<div class="relative aspect-[16/9] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Players running during training" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCSWhLEKKqd5qnf_OZd7wZaT-ESrN38ulsM3LMILwsYe1CLl5yeXUgF0kbnuPtlKiV9V9slBTQ5ETSRTbFfH1uy_5i3GlOtBT91aZBunPb9UMTwINcA3wVlBuqfODQbNtUACP91PCWW3Q_nojknXHL3Yyq3ocKEXutJsGXmDQY20Iami7lkGBMMvvuQwQxXXZUZo9pXiuyUgxNxQ6xxDDgz6h8tcbfK2TxFKFJgZVWm8KC8SQxH9eDtA4TKNXR5KdAAL7eeyBpVBYs");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark/90 to-transparent opacity-60"></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-mono text-primary border border-primary/20">
+                            Transition
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-display font-medium leading-tight group-hover:text-primary transition-colors">Counter Attack Drill</h3>
+<button class="text-text-muted hover:text-white"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Speed</span>
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Finishing</span>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-800/50">
+<span class="text-text-muted text-xs">Oct 15, 2023</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-slate-600 border border-surface-dark bg-cover" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCO4QDOVeww0GydEJ7Zk9vNjoRIA70fTLViO5VCRKD0RPGZgJxu0caV7QOVLMPgKmvEHBSVTaAlV2w7U3hyNYko9WiI4ykV1jp2jINFnNwrp_404tyvYhvGxeoRl1VZjr5_cBHurFn-G37dW9j0H6HqiJuckmYz4jEspflqs1VF-XSzA-vK1B0fjlLXNReefuVFzUPZpy1LXmdVdub4C96USixCVdMdGz-YVikm44Ipfm1nM_g403QaAuaGiZ3gdiae5a-9QyNxqAI");'></div>
+<div class="w-6 h-6 rounded-full bg-slate-600 border border-surface-dark bg-cover" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB02Ek_t2dcVl909dGaRIOX-gnvxoLW5SW5BjcqrXN7i07vDt0lhGQcBZQZCEGuCX8hA7LSZKkshUE6_kv8Vvm5BiY3Xzuoq8J7CNyaU5rsWuMVywZGGmIgo8LWw4iW-RSzzQY83L25plnvMuUfeVi_vb65ruHbYYNkG_0d66CzOT48cS5d8I3khcTI1XhZA6BJ9jymcwrgeVQQ0HCE0120GE-klXt0ngs3R5Ze3OGh_xyRECbx9uq0QW7wln3my4Xpvg9eQ0u-US4");'></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group bg-surface-dark rounded-xl overflow-hidden border border-slate-800 hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 cursor-pointer flex flex-col">
+<div class="relative aspect-[16/9] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Soccer ball on green grass texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDl1yii8Ka6pmcVhzELXTqqIjN9oyjBfqy5yts8QOJE9yCq0h8shB7uLNEl9pVWxakiTj0KbOa8Wh9pKZ1LdjzbzgdJ9k29P4svOheAJU4Z8_6GTayC3LFNb7wC-8tmF5ewuHr9AufFvgZ5CX0K8g-7LOLNidwh0FRne96gGjuRwuDJiLtV-EoEig1R72A5ZyPrxS33p-V_f52jsnq9TYaHNJgzf0xg0A0AvxVcjV45goBa-t8oeMfln8DDXmxluW3bxGCFRqZVVBU");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark/90 to-transparent opacity-60"></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-xs font-mono text-primary border border-primary/20">
+                            Defensive
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-display font-medium leading-tight group-hover:text-primary transition-colors">Low Block Shape</h3>
+<button class="text-text-muted hover:text-white"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</div>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Organization</span>
+<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">Compact</span>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-slate-800/50">
+<span class="text-text-muted text-xs">Oct 12, 2023</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-slate-600 border border-surface-dark bg-cover" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCpyEDWlURpNDmaCcDhEMXhIB9E4KaJHm3oQu2MvB6AUaslwGbEgJf7NKT_yh7fFjm_hzNFuu542500H8WNdSGUyKjoHkgtkcw16OLWhNbQSVWZRaF4cqUJ7cDBOYTZL4kUczA2KuD1NdO_UmZ49MwTvADUb8LdH_M87oY33k2sbPGgIMLFdUWw72XlQM03hqeoKoea26U34kIbmdb4RIhNWRj4yPhYhvZOpc7kRIFCJRZEyq2dAQVhDp5CQ-nP3IZ7tFefJWWUa3c");'></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Add New Card Placeholder -->
+<div class="group bg-surface-dark/50 rounded-xl overflow-hidden border border-dashed border-slate-700 hover:border-primary/50 hover:bg-surface-dark transition-all cursor-pointer flex flex-col items-center justify-center min-h-[300px]">
+<div class="w-16 h-16 rounded-full bg-slate-800 group-hover:bg-primary/20 flex items-center justify-center transition-colors mb-4">
+<span class="material-symbols-outlined text-3xl text-slate-400 group-hover:text-primary">add</span>
+</div>
+<h3 class="text-white text-lg font-display font-medium leading-tight mb-2">Create New Drill</h3>
+<p class="text-text-muted text-sm text-center px-8">Start from scratch or use AI generation to build a new tactical setup.</p>
+</div>
+</div>
+<!-- Pagination / Loader -->
+<div class="w-full flex justify-center py-8">
+<button class="text-text-muted hover:text-primary text-sm font-medium flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>
+                    Loading more drills...
+                </button>
+</div>
+</div>
+</main>
+<style>
+        /* Custom Scrollbar for nicer aesthetic in dark mode */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+            border-radius: 20px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #475569;
+        }
+        /* Hiding scrollbar for horizontal filter list but keeping functionality */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

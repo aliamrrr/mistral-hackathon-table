@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Taible Team Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2bcdee",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                        "surface-dark": "#18282b",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-background-dark px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">sports_soccer</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">Taible</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary text-sm font-medium transition-colors" href="#">Drills</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary text-sm font-medium transition-colors" href="#">Tactics</a>
+<a class="text-slate-900 dark:text-white text-sm font-bold border-b-2 border-primary pb-1" href="#">Team</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary text-sm font-medium transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex h-10 cursor-pointer items-center justify-center rounded-lg bg-primary hover:bg-primary/90 transition-colors px-4 text-background-dark text-sm font-bold">
+<span class="mr-2 material-symbols-outlined text-lg">add</span>
+<span>New Session</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-cover bg-center border-2 border-slate-200 dark:border-slate-700" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfN04vKc-6hJQVLersueQaiSwfAC_pRdGD6arzIlczCf0tg0QIQ8lm-CJU7E3ZeJAVBKlBkDse-yjwli03N8gISaa0HfA5XS7vq5MYsKZvKGbFyDz2_HyOAMindlJcyEYY-veLjv8WHiYNVlAvpCJClJYyba78jaFRHfkgkX9TccGtyp3KXxlsXDNR2xLEKc-fmrWrc5ChErVw-YRiYm2s_VxUs5JcTvV2ZfHQjqhpEa2vFjtq6iuoPQy1cEOJLGl1VyesEttlGRU");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col lg:flex-row gap-6 p-6 lg:p-10 max-w-[1600px] mx-auto w-full">
+<!-- Left Column: Team Management List -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- Title & Actions -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white">Team Management</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base">Manage your squad roster and kit configurations.</p>
+</div>
+<button class="flex h-10 items-center justify-center rounded-lg bg-surface-dark dark:bg-surface-dark border border-slate-700 hover:border-primary text-white text-sm font-bold px-4 transition-all shadow-sm">
+<span class="mr-2 material-symbols-outlined text-lg">person_add</span>
+                        Add Player
+                    </button>
+</div>
+<!-- Kit Toggle -->
+<div class="flex items-center gap-4 py-2">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Active Kit:</span>
+<div class="flex h-10 items-center rounded-lg bg-slate-200 dark:bg-surface-dark p-1 w-fit">
+<label class="cursor-pointer h-full flex items-center justify-center rounded px-4 transition-all has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 dark:text-slate-400 text-sm font-bold">
+<span>Home Kit</span>
+<input checked="" class="hidden" name="kit-toggle" type="radio" value="Home"/>
+</label>
+<label class="cursor-pointer h-full flex items-center justify-center rounded px-4 transition-all has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-primary text-slate-500 dark:text-slate-400 text-sm font-bold">
+<span>Away Kit</span>
+<input class="hidden" name="kit-toggle" type="radio" value="Away"/>
+</label>
+</div>
+</div>
+<!-- Players Table -->
+<div class="w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#1c2e33]">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Player Name</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">No.</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Position</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Disc Color</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Marcus Rashford portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLJYQSMucfGK264CraO-fqind9NCpLD-oid1rmGGnjUmGMzW0EJ7x4PJJPwaXsmYEvy9E5e1mdqAoVorUYMcy9jXue1g9j7aGFnXMCw3VeLAvhQ6bw81AWLZ-UCnZBWPOZ8MhqxQqUFb4XMgZ-75Pe0bWDIqqeWKQoiPK4tTsGGNY4L4kTbcZVfw5I9FOUt5sh5N00Cgk2RLBQqvYCVq2qIK3AESbnMuIhkfIl-ZWcmigUmQPLvDWVDmwVNdM1yq4v4XjL60mOeC0");'></div>
+<div class="font-medium text-slate-900 dark:text-white">Marcus Rashford</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium">10</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-red-100 dark:bg-red-900/30 px-2 py-1 text-xs font-medium text-red-700 dark:text-red-400 ring-1 ring-inset ring-red-600/10 dark:ring-red-400/20">Forward</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 cursor-pointer group/color">
+<div class="h-6 w-6 rounded-full bg-red-600 ring-2 ring-transparent group-hover/color:ring-primary transition-all shadow-sm"></div>
+<span class="text-xs text-slate-400 opacity-0 group-hover/color:opacity-100 transition-opacity">Change</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Bruno Fernandes portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuASk0YihQdmwELwFvjn1ggoEpUC--_wJhrsWb-OXBXxrYMEdkSl8zGcfFq0GUSDINx4RKtJaLW3ewRc0DjC6dtWxESoogafb0v7z67Rj6kj3RJexLAC1p7RDFFpF5yjWl30zi1J0FTkEu9BPX7pJ0EvoQSr0ExDa_nVlRsoWsRiQdHNoD3i5FBMa0Cz_9wPZxHBfKKq11LGcnbuNnDOSodvfXSYl2TFsSRxVoW9et2x111kRhjkY0f8uTFE8X6Tz7F9L_YdXRfXDU4");'></div>
+<div class="font-medium text-slate-900 dark:text-white">Bruno Fernandes</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium">8</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-blue-100 dark:bg-blue-900/30 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-400 ring-1 ring-inset ring-blue-600/10 dark:ring-blue-400/20">Midfielder</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 cursor-pointer group/color">
+<div class="h-6 w-6 rounded-full bg-red-600 ring-2 ring-transparent group-hover/color:ring-primary transition-all shadow-sm"></div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Harry Maguire portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgmSigHuIPjf-OSSQigedYL88H31-44_yEaRUwOHqwjXIFzzl1R7zFM5vkCKUq-POhbJhmV-fFAyaze055Q1Ptwgyp6HW4ucQfpFsEklK9XHPH0ud3coqzoKAzg-GMW7uazPLuyL2hPoH1JoAV3upUjSdgFQnOW16L1t9T6XqOL7rrg0T39zFe0Jn91cNzIdEA-xeQ8Fg--a8PeL0D5q-9vOFKlJx_Finf80to7Ie5MzU0d-1c3nNwdD6wSbTQbBiI9MT3dcYu390");'></div>
+<div class="font-medium text-slate-900 dark:text-white">Harry Maguire</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium">5</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400 ring-1 ring-inset ring-yellow-600/10 dark:ring-yellow-400/20">Defender</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 cursor-pointer group/color">
+<div class="h-6 w-6 rounded-full bg-red-600 ring-2 ring-transparent group-hover/color:ring-primary transition-all shadow-sm"></div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Luke Shaw portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDt2r-x85mANkL5iKpl2tIhC-6Fxz2Up93ER6qfXIN_WwNxa7y8KppOGNtl9WG4o6rzUd6v2BThrAGi6n10NpIT7Mrb3gDxm3Ej_tliIPtVgbJYMycZsRGnlYA10PelWNCSw_5yRZTPrF0VsUInD4wzsyh8MMx8mYXsDe7RIY6l833lt3y7nVzlgN-nNvKfNWaP65D7w99JH8skjNI2p0mBhKqkah77etSJ1e1B4x-XCjQMLHIZt6ef_Ob71H1YE3l0CYOUnhpctsg");'></div>
+<div class="font-medium text-slate-900 dark:text-white">Luke Shaw</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium">23</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400 ring-1 ring-inset ring-yellow-600/10 dark:ring-yellow-400/20">Defender</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 cursor-pointer group/color">
+<div class="h-6 w-6 rounded-full bg-red-600 ring-2 ring-transparent group-hover/color:ring-primary transition-all shadow-sm"></div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="David De Gea portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD5MWdJvhQw8-QuRqZj6y7WzyCxFhT3MK7k6ol1Xwbtj0Ew28p2GNlCv_Qfg9-uVA9fEAunTAFj5ioXyKofK_RVNru5i5BsO6eFjCM-1-G78-GiCX1SpeDqrjvMdYVBZM0ud3cTmbz3mP57VJYAMCXTRSuA7RPeDfutTSP8Q22jOqegeHYPRZPdubS_fNKcUrI5SOHQyfAYaR6Pm9Gpm6ytSxIbhMZM4LbUuc1X4Lj8sII01pVr6C_vS_z5KbnZTPqwz7S1dzzdOEc");'></div>
+<div class="font-medium text-slate-900 dark:text-white">David De Gea</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium">1</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-md bg-purple-100 dark:bg-purple-900/30 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-400 ring-1 ring-inset ring-purple-600/10 dark:ring-purple-400/20">Goalkeeper</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-2 cursor-pointer group/color">
+<div class="h-6 w-6 rounded-full bg-green-400 ring-2 ring-transparent group-hover/color:ring-primary transition-all shadow-sm"></div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#1c2e33] px-6 py-3">
+<div class="text-xs text-slate-500 dark:text-slate-400">Showing 1-5 of 24 players</div>
+<div class="flex gap-2">
+<button class="rounded p-1 text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="rounded p-1 text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: 3D Preview -->
+<div class="w-full lg:w-[400px] flex flex-col gap-6">
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark p-6 h-fit sticky top-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">3D Disc Preview</h3>
+<span class="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">Live</span>
+</div>
+<!-- 3D Mockup Area -->
+<div class="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#0d1416] dark:to-[#1a2c30] shadow-inner mb-6 flex items-center justify-center group">
+<!-- Grid lines to simulate 3D space -->
+<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(0deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, #ffffff 25%, #ffffff 26%, transparent 27%, transparent 74%, #ffffff 75%, #ffffff 76%, transparent 77%, transparent); background-size: 50px 50px;"></div>
+<!-- The Disc -->
+<div class="relative z-10 size-32 rounded-full bg-red-600 shadow-[0_20px_50px_-12px_rgba(220,38,38,0.5)] transform transition-transform group-hover:scale-105 duration-500 border-4 border-white dark:border-slate-800 flex items-center justify-center">
+<!-- Inner glow/shine -->
+<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-black/20 to-white/30"></div>
+<!-- Number -->
+<span class="text-4xl font-bold text-white drop-shadow-md">10</span>
+</div>
+<!-- Player Name Label floating -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 rounded bg-black/80 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">
+                            Rashford
+                        </div>
+</div>
+<!-- Selected Player Info -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4 border-b border-slate-100 dark:border-slate-700 pb-4">
+<div class="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center ring-2 ring-primary ring-offset-2 ring-offset-white dark:ring-offset-surface-dark" data-alt="Marcus Rashford selected" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWqbXR6BbZlEoX6BOXIOQ_46bEShU5RfWBeoEpl3HIOAv_r5qWhJcNf2e6oXw0zTXxNim94Hj-Ak2PKrGnzuMQ9niOngr5BXG0CAOpbgBUtevf7tl7HH80UbD7Qt0Ismtpdb-X6acKx4SNa-nvYO5ifot01YwRWJnwd8ouvmYDRNAlhvVOnUd_i6xGx5cMBcxL0_UzetBf2ujxsuuhNYgsH3K05UO9pFZR9oVMQrzDvTHdXuQPcYu1y7BPR-IJtUSBmO3q08XWGSA");'></div>
+<div>
+<div class="text-base font-bold text-slate-900 dark:text-white">Marcus Rashford</div>
+<div class="text-sm text-slate-500 dark:text-slate-400">Forward • #10</div>
+</div>
+</div>
+<!-- Mini Customization Form -->
+<div class="space-y-4">
+<div>
+<label class="mb-2 block text-xs font-medium text-slate-500 dark:text-slate-400">Disc Color</label>
+<div class="flex flex-wrap gap-2">
+<button class="h-8 w-8 rounded-full bg-red-600 ring-2 ring-primary ring-offset-2 ring-offset-white dark:ring-offset-surface-dark shadow-sm"></button>
+<button class="h-8 w-8 rounded-full bg-blue-600 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-600 ring-offset-2 ring-offset-white dark:ring-offset-surface-dark transition-all"></button>
+<button class="h-8 w-8 rounded-full bg-white border border-slate-200 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-600 ring-offset-2 ring-offset-white dark:ring-offset-surface-dark transition-all"></button>
+<button class="h-8 w-8 rounded-full bg-yellow-400 hover:ring-2 hover:ring-slate-300 dark:hover:ring-slate-600 ring-offset-2 ring-offset-white dark:ring-offset-surface-dark transition-all"></button>
+<button class="h-8 w-8 rounded-full border border-dashed border-slate-400 dark:border-slate-600 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-base">add</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="mb-2 block text-xs font-medium text-slate-500 dark:text-slate-400">Kit Number</label>
+<input class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-background-dark text-slate-900 dark:text-white px-3 py-2 text-sm focus:border-primary focus:ring-primary" type="number" value="10"/>
+</div>
+<div>
+<label class="mb-2 block text-xs font-medium text-slate-500 dark:text-slate-400">Size Scale</label>
+<input class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary mt-3" type="range"/>
+</div>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full rounded-lg bg-primary/10 hover:bg-primary/20 text-primary py-3 text-sm font-bold transition-colors">
+                        Update Preview
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

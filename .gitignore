@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# Environment variables (SECRETS)
+.env
+.env.*
+
+# Database
+*.db
+*.sqlite3
+
+# Node / Frontend
+node_modules/
+taible-frontend/node_modules/
+taible-frontend/dist/
+taible-frontend/.vite/
+
+# Static uploads (generated at runtime)
+backend/static/audio/
+backend/static/videos/
+backend/static/players/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary / test files
+migrate_db.py
+test_api.py
+test_export.py
+*.mp4
+*.webm
+*.wav
+*.mp3
+
+# Logs
+*.log
+
+# Gemini agent artifacts
+.gemini/
+.agents/
