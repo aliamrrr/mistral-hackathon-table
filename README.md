@@ -1,4 +1,4 @@
-# ⚽ Taible — AI-Powered Tactical Football Coaching
+# Taible : AI-Powered Tactical Football Coaching
 
 Taible is an AI-powered football coaching platform that transforms natural-language drill descriptions into **animated 3D tactical visualisations** with optional voice-over narration.
 
